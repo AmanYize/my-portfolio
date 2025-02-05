@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { DarkmodeState } from "../features/darkmodeSlice";
 import {
@@ -16,6 +16,8 @@ import {
   BookOpenIcon,
 } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Github, Linkedin } from "lucide-react";
 
 const Dashboard = () => {
   const darkmode = useSelector(
@@ -33,6 +35,14 @@ const Dashboard = () => {
       },
     },
   };
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % certificates.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -49,6 +59,33 @@ const Dashboard = () => {
     { skill: "Database", value: 88 },
     { skill: "Mobile", value: 85 },
     { skill: "DevOps", value: 82 },
+  ];
+
+  const certificates = [
+    {
+      title: "Full-Stack Web Development",
+      link: "https://www.linkedin.com/learning/certificates/ec6a7ce63db27f63ab1dcb8f50236e94bdd0a94b324ca37d601bdbd4830b7bc5?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BVB0r0TJrR82QK7GOQ%2B4q%2BQ%3D%3D",
+    },
+    {
+      title: "Python Specialization",
+      link: "https://www.coursera.org/account/accomplishments/specialization/PC6ULRD29EWL",
+    },
+    {
+      title: "Learn Next js",
+      link: "https://www.codecademy.com/profiles/blog4098630702/certificates/6567723e030e4c0089836b44fa56495c",
+    },
+    {
+      title: "Front End Developent Libraries",
+      link: "https://freecodecamp.org/certification/fcc0eb12d59-3e1a-4563-bc94-35fefa5cc616/front-end-development-libraries",
+    },
+    {
+      title: "Back End Development And APIs",
+      link: "https://freecodecamp.org/certification/fcc0eb12d59-3e1a-4563-bc94-35fefa5cc616/back-end-development-and-apis",
+    },
+    {
+      title: "Learn TypeScript",
+      link: "https://www.codecademy.com/profiles/blog4098630702/certificates/56fb1e71303e37b643bb1905f31c8a09",
+    },
   ];
 
   return (
@@ -92,15 +129,47 @@ const Dashboard = () => {
               <motion.a
                 whileHover={{ y: -2 }}
                 href="mailto:amanuel.yizelkal.dev@gmail.com"
+                target="_blank"
                 className="flex items-center justify-center gap-2"
               >
                 <EnvelopeIcon className="w-5 h-5" />
                 amanuel.yizelkal.dev@gmail.com
               </motion.a>
+
               <motion.span className="flex items-center justify-center gap-2">
                 <DevicePhoneMobileIcon className="w-5 h-5" />
                 +215985855044
               </motion.span>
+            </div>
+            <div className="mt-5 flex flex-col md:flex-row gap-3 md:gap-6 text-sm">
+              <motion.a
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.9 }}
+                href="https://github.com/AmanYize"
+                target="_blank"
+                className={`flex items-center justify-center gap-2 p-3 ${
+                  darkmode
+                    ? "bg-slate-950 border border-slate-700 hover:bg-slate-800"
+                    : "bg-slate-100 border border-slate-500 hover:bg-slate-200"
+                } rounded-lg transition-all duration-30`}
+              >
+                <Github
+                  className={`w-6 h-6 transition-all duration-300 group-hover:text-black dark:group-hover:text-white`}
+                />
+              </motion.a>
+              <motion.a
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.9 }}
+                href="https://www.linkedin.com/in/amanuel-yizelkal"
+                target="_blank"
+                className={`flex items-center justify-center gap-2 p-3 ${
+                  darkmode
+                    ? "bg-slate-950 border border-slate-700 hover:bg-slate-800"
+                    : "bg-slate-100 border border-slate-500 hover:bg-slate-200"
+                } rounded-lg transition-all duration-30`}
+              >
+                <Linkedin className="w-6 h-6 transition-all duration-300 group-hover:text-blue-600" />
+              </motion.a>
             </div>
           </div>
         </motion.div>
@@ -221,20 +290,42 @@ const Dashboard = () => {
           <h2 className="text-xl md:text-2xl font-bold mb-6">
             Top Certifications
           </h2>
-          <div className="flex overflow-x-auto pb-4 gap-4 scrollbar-hide">
-            {[...Array(5)].map((_, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.05 }}
-                className="flex-shrink-0 w-48 h-48 bg-slate-200 dark:bg-slate-700 rounded-xl p-4"
-              >
-                <div className="h-full bg-slate-300 dark:bg-slate-600 rounded-lg flex items-center justify-center">
-                  <span className="text-slate-500 dark:text-slate-300">
-                    Cert {i + 1}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
+          <div
+            className={`${
+              darkmode ? "bg-slate-700" : "bg-slate-200"
+            } flex justify-center items-center w-full py-10 rounded-xl shadow-lg overflow-hidden`}
+          >
+            <div className="relative w-full max-w-lg h-40 md:h-48 lg:h-56 flex items-center justify-center">
+              <AnimatePresence mode="wait">
+                {certificates.map(
+                  (cert, i) =>
+                    i === index && (
+                      <motion.a
+                        key={i}
+                        href={cert.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className={`${
+                          darkmode
+                            ? "bg-slate-900 border border-slate-500 hover:bg-slate-800"
+                            : "bg-slate-100 border border-slate-300 hover:bg-slate-200"
+                        } absolute w-full  shadow-xl rounded-lg p-6 flex flex-col items-center justify-center text-center transform transition-all duration-300 hover:shadow-2xl`}
+                      >
+                        <h3 className=" font-semibold text-lg md:text-xl">
+                          {cert.title}
+                        </h3>
+                        <span className="mt-2 text-blue-500 dark:text-blue-400 font-medium text-sm md:text-base">
+                          Click to view certificate
+                        </span>
+                      </motion.a>
+                    )
+                )}
+              </AnimatePresence>
+            </div>
           </div>
         </motion.div>
       </div>
