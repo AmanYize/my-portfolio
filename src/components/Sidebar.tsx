@@ -28,7 +28,7 @@ const Sidebar = () => {
     { to: "/about", icon: Info, label: "About" },
     { to: "/projects", icon: Folder, label: "Projects" },
     { to: "/skills", icon: LibraryBig, label: "Skills" },
-    { to: "/certifications", icon: Award, label: "Skills" },
+    { to: "/certifications", icon: Award, label: "Certifications" },
     { to: "/contact", icon: Contact, label: "Contact" },
   ];
 
