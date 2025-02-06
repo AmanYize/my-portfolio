@@ -8,8 +8,7 @@ import {
   FaLinkedin,
   FaTelegram,
   FaDiscord,
-  FaTwitter,
-  FaFacebook,
+  FaGithub,
 } from "react-icons/fa";
 
 // Animation configurations
@@ -52,6 +51,12 @@ const contactsData = [
     value: "amanuel-yizelkal",
     icon: <FaLinkedin className="text-blue-600 text-4xl" />,
     link: "https://www.linkedin.com/in/amanuel-yizelkal",
+  },
+  {
+    title: "Github",
+    value: "AmanYize",
+    icon: <FaGithub className="text-slate-500 text-4xl" />,
+    link: "https://www.github.com/AmanYize",
   },
   {
     title: "Telegram",
