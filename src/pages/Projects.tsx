@@ -179,6 +179,15 @@ const Projects = () => {
             githubUrl="https://github.com/AmanYize/luna-market"
             darkmode={darkmode}
           />
+          <ProjectCard
+            title="MERN To-Do App"
+            description="A full-stack to-do list application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. This app allows users to create, read, update, and delete (CRUD) tasks. It features user authentication, a responsive UI, and a backend API to manage tasks."
+            technologies={["Vite", "React", "Node", "Express", "MonogoDB"]}
+            imageUrl="/assets/projects/tasks.png"
+            liveDemoUrl="https://amanyize-tasks.netlify.app/"
+            githubUrl="https://github.com/AmanYize/todo_app"
+            darkmode={darkmode}
+          />
           {/* Trading Bot */}
           <ProjectCard
             title="Algorithmic Trading Bot"
