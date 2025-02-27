@@ -56,7 +56,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <img
           src={imageUrl}
           alt={title}
-          className="w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-500 ease-in-out"
+          className="w-full h-full object-contain transform scale-100 group-hover:scale-110 transition-transform duration-500 ease-in-out"
         />
         {/* Overlay with Description */}
         <div
@@ -169,6 +169,41 @@ const Projects = () => {
             githubUrl="https://github.com/AmanYize/inventory-managment"
             darkmode={darkmode}
           />
+
+          {/* Nuxt Dojo */}
+          <ProjectCard
+            title="Nuxt Dojo"
+            description="An online merch store built with Nuxt 3, featuring smooth animations with Motion and data fetching via Fetch API."
+            technologies={[
+              "Nuxt 3",
+              "Vue 3",
+              "Fetch API",
+              "Motion",
+              "Tailwind CSS",
+            ]}
+            imageUrl="/assets/projects/nuxt-dojo.png"
+            liveDemoUrl="https://amanyize-nuxt-dojo.netlify.app/"
+            githubUrl="https://github.com/AmanYize/nuxt-dojo"
+            darkmode={darkmode}
+          />
+
+          {/* Job Portal */}
+          <ProjectCard
+            title="Job Portal"
+            description="A platform to browse and apply for jobs. Built with Vue, Vue Router, Fetch API, and Motion for animations."
+            technologies={[
+              "Vue.js",
+              "Vue Router",
+              "Fetch API",
+              "Motion",
+              "Tailwind CSS",
+            ]}
+            imageUrl="/assets/projects/job-portal.png"
+            liveDemoUrl="https://amanyize-jobs.netlify.app/"
+            githubUrl="https://github.com/AmanYize/amanyize-jobs"
+            darkmode={darkmode}
+          />
+
           {/* E-Commerce Website */}
           <ProjectCard
             title="E-Commerce Website"
