@@ -1,20 +1,13 @@
-import { Link, useLocation } from "react-router-dom"; // Removed useMatch, used pathname directly
+import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { SidebarState, toggleSidebar } from "../features/sidebarSlice";
-import {
-  Home,
-  Info,
-  Folder,
-  LibraryBig,
-  Contact,
-  Menu,
-  Award,
-} from "lucide-react";
+import { Home, Info, Folder, LibraryBig, Contact, Award } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DarkmodeState } from "../features/darkmodeSlice";
+import { GoSidebarCollapse } from "react-icons/go"; // Import the GitHub Octicon icon
 
 const Sidebar = () => {
-  const { pathname } = useLocation(); // useLocation gives the current path
+  const { pathname } = useLocation();
   const isOpen = useSelector(
     (state: { sidebar: SidebarState }) => state.sidebar.isOpen
   );
@@ -43,13 +36,13 @@ const Sidebar = () => {
       {/* Header Section */}
       <div className="flex items-center justify-between h-16 px-4 border-b border-slate-700/50">
         <motion.button
-          className="pl-1 rounded-lg transition-colors"
+          className="pl-1 rounded-lg transition-colors cursor-pointer"
           whileHover={{ scale: 1.05 }}
           onClick={() => dispatch(toggleSidebar())}
         >
-          <Menu className="w-6 h-6" />
+          {/* Use the GoSidebarCollapse icon */}
+          <GoSidebarCollapse className="w-6 h-6" />
         </motion.button>
-
         <AnimatePresence>
           {isOpen && (
             <motion.span
@@ -68,7 +61,6 @@ const Sidebar = () => {
       <nav className="flex-1 flex flex-col p-2 space-y-1 mt-4">
         {navItems.map(({ to, icon: Icon, label }) => {
           const isActive = pathname === to;
-
           return (
             <motion.div
               key={to}
@@ -88,7 +80,6 @@ const Sidebar = () => {
                     />
                   )}
                 </div>
-
                 <AnimatePresence>
                   {isOpen && (
                     <motion.span
